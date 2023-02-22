@@ -1,11 +1,25 @@
 import React, {useState} from 'react';
-import {MapContainer, TileLayer, Marker} from "react-leaflet";
+import {MapContainer, TileLayer, Marker, useMap} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import './App.css';
 import {Icon} from "leaflet";
 
+type GeoCode = [number, number];
+
+
 type CustomMarker = {
-    position: [number, number];
+    position: GeoCode;
+}
+
+interface ChangeViewProps {
+    center: GeoCode
+    zoom: number
+}
+
+function ChangeView({center, zoom}: ChangeViewProps) {
+    const map = useMap();
+    map.setView(center, zoom);
+    return null;
 }
 
 const customIcon = new Icon({
@@ -19,6 +33,7 @@ const initialMarkers: CustomMarker[] = [
 
 function App() {
     let [markers, setMarkers] = useState<CustomMarker[]>(initialMarkers);
+    let [position, setPosition] = useState<GeoCode>([52.520645, 13.409779]);
 
     function addMarker(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -29,6 +44,7 @@ function App() {
             ]
         }
         setMarkers([...markers, newMarker])
+        setPosition(newMarker.position)
     }
 
     function removeMarker(index: number) {
@@ -52,7 +68,8 @@ function App() {
                 </ul>
             </div>
             <div className={"main"}>
-                <MapContainer center={[52.520645, 13.409779]} zoom={13}>
+                <MapContainer center={position} zoom={13}>
+                    <ChangeView center={position} zoom={13}/>
                     <TileLayer
                         attribution={'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'}
                         url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
