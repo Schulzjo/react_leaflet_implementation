@@ -51,6 +51,10 @@ function App() {
         setMarkers(markers.filter((marker, i) => i !== index));
     }
 
+    function jumpToMarker(index: number) {
+        setPosition(markers[index].position)
+    }
+
     return (
         <div className="App">
             <form className={"input-form"} onSubmit={addMarker}>
@@ -62,6 +66,7 @@ function App() {
                 <ul>
                     {markers.map((marker, index) => (
                         <li key={index}>{`lat: ${marker.position[0]} -- long: ${marker.position[1]}`}
+                            <button onClick={() => jumpToMarker(index)}>Go2</button>
                             <button onClick={() => removeMarker(index)}>Del</button>
                         </li>
                     ))}
