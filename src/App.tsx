@@ -65,8 +65,8 @@ function App() {
             <div className={"markerList"}>
                 <ul>
                     {markers.map((marker, index) => (
-                        <li key={index}>{`lat: ${marker.position[0]} -- long: ${marker.position[1]}`}
-                            <button onClick={() => jumpToMarker(index)}>Go2</button>
+                        <li key={index}>
+                            <button className={"btn"} onClick={() => jumpToMarker(index)}>{`lat: ${marker.position[0]} -- long: ${marker.position[1]}`}</button>
                             <button onClick={() => removeMarker(index)}>Del</button>
                         </li>
                     ))}
