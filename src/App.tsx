@@ -31,6 +31,10 @@ function App() {
         setMarkers([...markers, newMarker])
     }
 
+    function removeMarker(index: number) {
+        setMarkers(markers.filter((marker, i) => i !== index));
+    }
+
     return (
         <div className="App">
             <form className={"input-form"} onSubmit={addMarker}>
@@ -41,22 +45,24 @@ function App() {
             <div className={"markerList"}>
                 <ul>
                     {markers.map((marker, index) => (
-                        <li key={index}>{`lat: ${marker.position[0]} -- long: ${marker.position[1]}`}</li>
+                        <li key={index}>{`lat: ${marker.position[0]} -- long: ${marker.position[1]}`}
+                            <button onClick={() => removeMarker(index)}>Del</button>
+                        </li>
                     ))}
                 </ul>
             </div>
             <div className={"main"}>
-            <MapContainer center={[52.520645, 13.409779]} zoom={13}>
-                <TileLayer
-                    attribution={'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'}
-                    url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-                />
-                {markers.map((marker) => (
-                    <Marker position={marker.position} icon={customIcon}>
-                    </Marker>
-                ))
-                }
-            </MapContainer>
+                <MapContainer center={[52.520645, 13.409779]} zoom={13}>
+                    <TileLayer
+                        attribution={'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'}
+                        url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+                    />
+                    {markers.map((marker) => (
+                        <Marker position={marker.position} icon={customIcon}>
+                        </Marker>
+                    ))
+                    }
+                </MapContainer>
 
             </div>
         </div>
