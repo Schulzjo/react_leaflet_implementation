@@ -29,16 +29,23 @@ function App() {
             ]
         }
         setMarkers([...markers, newMarker])
-
     }
 
     return (
         <div className="App">
-            <form onSubmit={addMarker}>
+            <form className={"input-form"} onSubmit={addMarker}>
                 <input type="text" name="lat" placeholder="latitude"/>
                 <input type="text" name="long" placeholder="longitude"/>
                 <button>Add marker</button>
             </form>
+            <div className={"markerList"}>
+                <ul>
+                    {markers.map((marker, index) => (
+                        <li key={index}>{`lat: ${marker.position[0]} -- long: ${marker.position[1]}`}</li>
+                    ))}
+                </ul>
+            </div>
+            <div className={"main"}>
             <MapContainer center={[52.520645, 13.409779]} zoom={13}>
                 <TileLayer
                     attribution={'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'}
@@ -50,6 +57,8 @@ function App() {
                 ))
                 }
             </MapContainer>
+
+            </div>
         </div>
     );
 }
