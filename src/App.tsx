@@ -83,10 +83,13 @@ function App() {
                         attribution={'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'}
                         url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
                     />
-                    {markers.map((marker) => (
+                    {markers.map((marker, index) => (
                         <Marker position={marker.position} icon={customIcon}>
                             <Popup>
                                 <h2>{marker.name}</h2>
+                                <button onClick={() => {
+                                    removeMarker(index)
+                                } }>Delete</button>
                             </Popup>
                         </Marker>
                     ))
