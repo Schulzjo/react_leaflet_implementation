@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {MapContainer, TileLayer, Marker, useMap} from "react-leaflet";
+import {MapContainer, TileLayer, Marker, useMap, Popup} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import './App.css';
 import {Icon} from "leaflet";
@@ -9,6 +9,7 @@ type GeoCode = [number, number];
 
 type CustomMarker = {
     position: GeoCode;
+    name: string;
 }
 
 interface ChangeViewProps {
@@ -28,7 +29,7 @@ const customIcon = new Icon({
 })
 
 const initialMarkers: CustomMarker[] = [
-    {position: [52.520645, 13.409779]},
+    {position: [52.520645, 13.409779], name: "Berlin"},
 ]
 
 function App() {
@@ -41,9 +42,11 @@ function App() {
         const target = event.currentTarget;
         const newMarker: CustomMarker = {
             position: [target.lat.value as number, target.long.value as number
-            ]
+            ],
+            name: target.markerName.value as string,
         }
         setMarkers([...markers, newMarker])
+        console.log(newMarker.name)
         setPosition(newMarker.position)
     }
 
@@ -60,13 +63,14 @@ function App() {
             <form className={"input-form"} onSubmit={addMarker}>
                 <input type="text" name="lat" placeholder="latitude"/>
                 <input type="text" name="long" placeholder="longitude"/>
+                <input type="text" name="markerName" placeholder="name"/>
                 <button>Add marker</button>
             </form>
             <div className={"markerList"}>
                 <ul>
                     {markers.map((marker, index) => (
                         <li key={index}>
-                            <button className={"btn"} onClick={() => jumpToMarker(index)}>{`lat: ${marker.position[0]} -- long: ${marker.position[1]}`}</button>
+                            <button className={"btn"} onClick={() => jumpToMarker(index)}>{`lat: ${marker.position[0]} -- long: ${marker.position[1]} -- name: ${marker.name}`}</button>
                             <button onClick={() => removeMarker(index)}>Del</button>
                         </li>
                     ))}
@@ -81,6 +85,9 @@ function App() {
                     />
                     {markers.map((marker) => (
                         <Marker position={marker.position} icon={customIcon}>
+                            <Popup>
+                                <h2>{marker.name}</h2>
+                            </Popup>
                         </Marker>
                     ))
                     }
