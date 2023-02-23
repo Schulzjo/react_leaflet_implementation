@@ -88,7 +88,7 @@ function App() {
                         url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
                     />
                     {markers.map((marker, index) => (
-                        <Marker position={marker.position} icon={customIcon}>
+                        <Marker key={index} position={marker.position} icon={customIcon}>
                             <Popup>
                                 <h2>{marker.name}</h2>
                                 <button onClick={() => {
