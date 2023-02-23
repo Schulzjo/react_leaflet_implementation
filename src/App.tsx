@@ -17,7 +17,7 @@ interface ChangeViewProps {
     zoom: number
 }
 
-function ChangeView({center, zoom}: ChangeViewProps) {
+function ChangeView({center, zoom}: ChangeViewProps): null {
     const map = useMap();
     map.setView(center, zoom);
     return null;
