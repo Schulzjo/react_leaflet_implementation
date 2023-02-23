@@ -70,7 +70,11 @@ function App() {
                 <ul>
                     {markers.map((marker, index) => (
                         <li key={index}>
-                            <button className={"btn"} onClick={() => jumpToMarker(index)}>{`lat: ${marker.position[0]} -- long: ${marker.position[1]} -- name: ${marker.name}`}</button>
+                            <button className={"btn"} onClick={() => jumpToMarker(index)}>
+                                {`name: ${marker.name}`}<br/>
+                                {`lat: ${marker.position[0]}`}<br/>
+                                {`long: ${marker.position[1]}`}<br/>
+                            </button>
                             <button onClick={() => removeMarker(index)}>Del</button>
                         </li>
                     ))}
@@ -89,7 +93,8 @@ function App() {
                                 <h2>{marker.name}</h2>
                                 <button onClick={() => {
                                     removeMarker(index)
-                                } }>Delete</button>
+                                }}>Delete
+                                </button>
                             </Popup>
                         </Marker>
                     ))
