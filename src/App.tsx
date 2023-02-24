@@ -69,23 +69,25 @@ function App() {
                 <ul>
                     {markers.map((marker, index) => (
                         <li className={"row-outer"} key={index}>
-                                <div className={"row-inner"}>
-                                    <button className={"btn marker-list-btn"} onClick={() => jumpToMarker(index)}>
-                                        {`name: ${marker.name}`}<br/>
-                                        {`lat: ${marker.position[0]}`}<br/>
-                                        {`long: ${marker.position[1]}`}<br/>
-                                    </button>
-                                </div>
-                                <div className={"row-inner"}>
-                                    <button className={"btn marker-list-btn btn-del"} onClick={() => removeMarker(index)}>X</button>
-                                </div>
+                            <div className={"row-inner"}>
+                                <button className={"btn marker-list-btn"} onClick={() => jumpToMarker(index)}>
+                                    {`name: ${marker.name}`}<br/>
+                                    {`lat: ${marker.position[0]}`}<br/>
+                                    {`long: ${marker.position[1]}`}<br/>
+                                </button>
+                            </div>
+                            <div className={"row-inner"}>
+                                <button className={"btn marker-list-btn btn-del"}
+                                        onClick={() => removeMarker(index)}>X
+                                </button>
+                            </div>
                         </li>
                     ))}
                 </ul>
             </div>
             <div className={"main"}>
                 <MapContainer center={position} zoom={13}>
-                    <ChangeView center={position} />
+                    <ChangeView center={position}/>
                     <TileLayer
                         attribution={'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'}
                         url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
@@ -93,11 +95,21 @@ function App() {
                     {markers.map((marker, index) => (
                         <Marker key={index} position={marker.position} icon={customIcon}>
                             <Popup>
-                                <h2>{marker.name}</h2>
-                                <button onClick={() => {
-                                    removeMarker(index)
-                                }}>Delete
-                                </button>
+                                <div className={"row-outer"}>
+                                    <div className={"row-inner"}>
+                                    <h2>{marker.name}</h2>
+                                    </div>
+                                    <div className={"row-inner"}>
+                                    <button className={"row-inner btn"} style={{
+                                        background: "#ff0000",
+                                        marginLeft: "5px",
+                                        marginTop: "-5px",
+                                    }} onClick={() => {
+                                        removeMarker(index)
+                                    }}>Delete
+                                    </button>
+                                </div>
+                                </div>
                             </Popup>
                         </Marker>
                     ))
