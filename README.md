@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# React Leaflet Implementation
+This is a small playground for testing out [react-leaflet](https://react-leaflet.js.org/) package. 
+It is only meant to try out the functionalities regarding view position and marker handling. 
+So, forgive the ugly design around it.
+
+![screenshot.jpg](./docs/screenshot.jpg)
+
+# Project Setup
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+To install dependencies run `npm install` in the project directory.
 
 ## Available Scripts
 
