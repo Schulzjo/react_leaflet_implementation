@@ -23,6 +23,11 @@
   padding: 10px;
 }
 
+.input-field {
+  padding: 5px;
+  margin: 5px;
+}
+
 .main {
   margin-left: 300px; /* Same as the width of markerlist */
 }
@@ -35,16 +40,41 @@
   top: 0;
   left: 0;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 5vh;
 }
 
 .btn {
-  border: none;
-  background-color: inherit;
-  padding: 10px 5px;
-  font-size: 16px;
-  cursor: pointer;
-  display: inline-block;
+  padding:5px 10px;
+  background:#5bb500;
+  border:0 none;
+  cursor:pointer;
+  color: #fff;
+  vertical-align: middle;
 }
 
-.btn:hover {background: #eee;}
+.marker-list-btn {
+  margin-bottom: 5px;
+  cursor:pointer;
+  height: 80px;
+  width: 250px;
+}
+
+.btn-del {
+  background: #ff0000;
+  width: 50px;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.btn:hover {background: #5ba545;}
+
+.btn-del:hover {background: #e83f3f;}
+
+.row-outer {
+  width:100%;
+  text-align: center;
+}
+
+.row-inner {
+  display: inline-block;
+}

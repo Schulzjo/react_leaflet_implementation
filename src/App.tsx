@@ -61,21 +61,25 @@ function App() {
     return (
         <div className="App">
             <form className={"input-form"} onSubmit={addMarker}>
-                <input type="text" name="lat" placeholder="latitude"/>
-                <input type="text" name="long" placeholder="longitude"/>
-                <input type="text" name="markerName" placeholder="name"/>
-                <button>Add marker</button>
+                <input className={"input-field"} type="text" name="lat" placeholder="latitude"/>
+                <input className={"input-field"} type="text" name="long" placeholder="longitude"/>
+                <input className={"input-field"} type="text" name="markerName" placeholder="name"/>
+                <button className={"btn"}>Add marker</button>
             </form>
             <div className={"markerList"}>
                 <ul>
                     {markers.map((marker, index) => (
-                        <li key={index}>
-                            <button className={"btn"} onClick={() => jumpToMarker(index)}>
-                                {`name: ${marker.name}`}<br/>
-                                {`lat: ${marker.position[0]}`}<br/>
-                                {`long: ${marker.position[1]}`}<br/>
-                            </button>
-                            <button onClick={() => removeMarker(index)}>Del</button>
+                        <li className={"row-outer"} key={index}>
+                                <div className={"row-inner"}>
+                                    <button className={"btn marker-list-btn"} onClick={() => jumpToMarker(index)}>
+                                        {`name: ${marker.name}`}<br/>
+                                        {`lat: ${marker.position[0]}`}<br/>
+                                        {`long: ${marker.position[1]}`}<br/>
+                                    </button>
+                                </div>
+                                <div className={"row-inner"}>
+                                    <button className={"btn marker-list-btn btn-del"} onClick={() => removeMarker(index)}>X</button>
+                                </div>
                         </li>
                     ))}
                 </ul>
