@@ -14,12 +14,11 @@ type CustomMarker = {
 
 interface ChangeViewProps {
     center: GeoCode
-    zoom: number
 }
 
-function ChangeView({center, zoom}: ChangeViewProps): null {
+function ChangeView({center}: ChangeViewProps): null {
     const map = useMap();
-    map.setView(center, zoom);
+    map.setView(center);
     return null;
 }
 
@@ -86,7 +85,7 @@ function App() {
             </div>
             <div className={"main"}>
                 <MapContainer center={position} zoom={13}>
-                    <ChangeView center={position} zoom={13}/>
+                    <ChangeView center={position} />
                     <TileLayer
                         attribution={'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'}
                         url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
